@@ -6,6 +6,9 @@ const ArrayList = {
   size: 100
 };
 
+/////////////////////////////////////////
+/////////////////////////////////////////
+// All the insertion cases completed
 function insertAtEnding(List, newvalue) {
   if (List.size === List.length) {
     console.log("List is Full");
@@ -15,7 +18,6 @@ function insertAtEnding(List, newvalue) {
   List.arr[List.length] = newvalue;
   List.length += 1;
 }
-
 function insertAtBeginning(List, newValue) {
   if (List.size === List.length) {
     console.log("List is Full");
@@ -35,17 +37,24 @@ function insertAtBeginning(List, newValue) {
   // }
   // List.arr[0] = newValue;
 }
-
 function insertAtAPos(List, pos, newValue) {
 
   if(pos < 0 || pos > List.length - 1) {
     return;
   }
-  for(let i = List.length-1; i > pos; i--) {
+  for(let i = List.length; i > pos; i--) {
     List.arr[i] = List.arr[i-1];
   }
   List.arr[pos] = newValue; 
+  List.length +=1;
 }
+
+/////////////////////////////////////////
+/////////////////////////////////////////
+// The next is the deletion cases.
+function deleteAtEnding() {}
+function deleteAtBeginning() {}
+function deleteAtPos() {}
 
 function displayArray(List) {
   let list = '';
@@ -54,8 +63,6 @@ function displayArray(List) {
   }
   console.log(list);
 }
-
-
 
 insertAtEnding(ArrayList, 2);
 insertAtEnding(ArrayList, 4);
