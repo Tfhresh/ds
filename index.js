@@ -52,10 +52,25 @@ function insertAtAPos(List, pos, newValue) {
 /////////////////////////////////////////
 /////////////////////////////////////////
 // The next is the deletion cases.
-function deleteAtEnding() {}
-function deleteAtBeginning() {}
-function deleteAtPos() {}
-
+function deleteAtEnding(List) {
+  const deletedEl = List.arr[--List.length];
+  // const deletedEl = List.arr[List.length - 1];
+  // List.length -= 1;
+  return deletedEl;
+}
+function deleteAtBeginning(List) {
+  for(let i=0; i<List.length - 1; i++) {
+    List.arr[i] = List.arr[i+1];
+  }
+  List.length--;
+}
+function deleteAtPos(List, pos) {
+  if(pos < 0 || pos >= List.length -1) return;
+  for(let i = pos; i < List.length - 1; i++) {
+    List.arr[i] = List.arr[i+1];
+  }
+  List.length--;
+}
 function displayArray(List) {
   let list = '';
   for(let i=0; i<List.length; i++) {
@@ -63,13 +78,45 @@ function displayArray(List) {
   }
   console.log(list);
 }
+function getArrEl(List, pos) {
+  if(pos < 0 || pos >= List.length -1) return;
+  return List.arr[pos];
+}
+function setArrEl(List, pos, val) {
+  if(pos < 0 || pos >= List.length -1) return;
+  List.arr[pos] = val;
+}
+function searchEl(List, val) {
+  for(let i = 0; i< List.length; i++) {
+    console.log(List.arr[i], "   ", val);
+    if(List.arr[i] === val) return i;
+  }
+
+  return -1;
+}
+
+// Transversal
+function doubleElements(List) {
+  for(let i=0; i<List.length; i++) {
+    List.arr[i] *= 2;
+  }
+}
+
+// Search Element
 
 insertAtEnding(ArrayList, 2);
 insertAtEnding(ArrayList, 4);
-insertAtBeginning(ArrayList, 65);
-insertAtBeginning(ArrayList, 70);
-insertAtAPos(ArrayList, 1, 7); 
-displayArray(ArrayList);
+insertAtEnding(ArrayList, 65);
+insertAtEnding(ArrayList, 70);
+insertAtEnding(ArrayList, 7);
+// setArrEl(ArrayList, 3, 50);
+
+// console.log("This is the third element: ", getArrEl(ArrayList, 2))
+// deleteAtBeginning(ArrayList);
+doubleElements(ArrayList);
+// displayArray(ArrayList);
+
+console.log("We are searching for: ", searchEl(ArrayList, 1));
 
 
 
@@ -81,7 +128,8 @@ Operations
  - deletion
  - display
  - transversal
- - find
- - modify
+ - search
+ - get
+ - set
  - merge
 */ 
