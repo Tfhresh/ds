@@ -6,9 +6,19 @@ const ArrayList = {
   size: 100
 };
 
-/////////////////////////////////////////
-/////////////////////////////////////////
-// All the insertion cases completed
+const ArrayList1 = {
+  length: 7,
+  arr: [1, 2, 3, 4, 5, 11, 12],
+  size: 10
+};
+
+const ArrayList2 = {
+  length: 5,
+  arr: [6, 7, 8, 9, 10],
+  size: 10
+}
+
+
 function insertAtEnding(List, newvalue) {
   if (List.size === List.length) {
     console.log("List is Full");
@@ -48,10 +58,6 @@ function insertAtAPos(List, pos, newValue) {
   List.arr[pos] = newValue; 
   List.length +=1;
 }
-
-/////////////////////////////////////////
-/////////////////////////////////////////
-// The next is the deletion cases.
 function deleteAtEnding(List) {
   const deletedEl = List.arr[--List.length];
   // const deletedEl = List.arr[List.length - 1];
@@ -94,29 +100,30 @@ function searchEl(List, val) {
 
   return -1;
 }
-
-// Transversal
 function doubleElements(List) {
   for(let i=0; i<List.length; i++) {
     List.arr[i] *= 2;
   }
 }
+function concatArrays(List1, List2) {
+  if((List1.size - List1.length) < List2.length) return;
+  for(let i = List1.length, j=0; j < List2.length; i++, j++) {
+    List1.arr[i] = List2.arr[j];
+    List1.length++;
+  }
+}
+function concatInAThirdArray(List1, List2) {
+  const newArray = [];
+  let i = 0;
+  for(;i < List1.length; i++) {
+    newArray[i] = List1.arr[i];
+  }
 
-// Search Element
-
-insertAtEnding(ArrayList, 2);
-insertAtEnding(ArrayList, 4);
-insertAtEnding(ArrayList, 65);
-insertAtEnding(ArrayList, 70);
-insertAtEnding(ArrayList, 7);
-// setArrEl(ArrayList, 3, 50);
-
-// console.log("This is the third element: ", getArrEl(ArrayList, 2))
-// deleteAtBeginning(ArrayList);
-doubleElements(ArrayList);
-// displayArray(ArrayList);
-
-console.log("We are searching for: ", searchEl(ArrayList, 1));
+  for(let j = 0; j < List2.length; j++, i++) {
+    newArray[i] = List2.arr[j];
+  }
+  return newArray;
+}
 
 
 
