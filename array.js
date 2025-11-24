@@ -1,5 +1,3 @@
-let num = [1, 2, 3];
-
 const ArrayList = {
   length: 0,
   arr: [],
