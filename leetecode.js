@@ -127,7 +127,7 @@ function recursiveFactorial(n) {
   return n * recursiveFactorial(n - 1);
 }
 
-function reduceFactorial (n) {
+function reduceFactorial(n) {
   return Array.from(new Array(n)).reduce((acc, _, curIn) => acc * (curIn + 1), 1);
 }
 
@@ -135,14 +135,55 @@ function isPalindrome(number) {
 
   let num = number;
   let reverse = 0;
-  let length = numberLength(num)-1;
+  let length = numberLength(num) - 1;
 
-  while(num !== 0) {
+  while (num !== 0) {
     let rem = num % 10;
-    reverse += (rem * (10**(length--)));
-    num = Math.floor(num/10);
+    reverse += (rem * (10 ** (length--)));
+    num = Math.floor(num / 10);
   }
 
   return reverse === number;
 }
+
+function fibonacci(n) {
+  let num1 = 0, num2 = 1, nextNumber;
+
+  console.log(num1);
+  console.log(num2);
+
+  for (let i = 2; i < n; i++) {
+    nextNumber = num1 + num2;
+    console.log(nextNumber)
+    num1 = num2;
+    num2 = nextNumber;
+  }
+
+}
+
+function fibonacciRecursion(n) {
+  if (n == 0 || n == 1) {
+    return n;
+  }
+
+  return fibonacciRecursion(n - 1) + fibonacciRecursion(n - 2);
+}
+
+function sumOfArray(arr) {
+  let carry = 1;
+  for (let i = arr.length - 1; i >= 0; i--) {
+    let sum = arr[i] + carry;
+    arr[i] = (sum) % 10;
+    carry = Math.floor((sum) / 10);
+  }
+  if(carry > 0) {
+    arr.unshift(carry)
+  }
+  console.log(arr);
+}
+
+sumOfArray([1, 2, 3]);
+sumOfArray([9,9,9]);
+sumOfArray([9,0,9]);
+sumOfArray([9,0,9]);
 
