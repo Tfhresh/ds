@@ -43,7 +43,7 @@ class LinkedList {
 
     const newNode = new Node(data, null);
     let temp = this.head;
-    while(temp.next) {
+    while (temp.next) {
       temp = temp.next;
     }
     temp.next = newNode;
@@ -51,7 +51,7 @@ class LinkedList {
   }
 
   insertAtPos(data, pos) {
-    if(pos < 0 || pos > this.size) return;
+    if (pos < 0 || pos > this.size) return;
 
     if (!this.head) {
       this.head = new Node(data, null);
@@ -60,7 +60,7 @@ class LinkedList {
     }
 
     let temp = this.head;
-    for(let i=0; i<pos-1; i++) {
+    for (let i = 0; i < pos - 1; i++) {
       temp = temp.next;
     }
     const newNode = new Node(data, null);
@@ -69,11 +69,54 @@ class LinkedList {
     this.size++
   }
 
+  deleteAtBegin() {
+    if (!this.head) return;
+    this.head = this.head.next;
+  }
+
+  deleteAtEndTwoPointer() {
+    if (!this.head) return;
+    let temp, temp2 = null;
+    temp = temp2 = this.head;
+
+    while (temp.next) {
+      temp2 = temp;
+      temp = temp.next;
+    }
+    temp2.next = null;
+  }
+
+  deleteAtEnd() {
+    if (!this.head) return;
+
+    let temp = this.head;
+    while (temp.next && temp.next.next) {
+      temp = temp.next;
+    }
+    delete temp.next.next;
+    temp.next = null
+  }
+
+  deleteAtPos(pos) {
+    if (pos < 0 || pos > this.length() - 1) return;
+    let temp = this.head;
+    let i;
+    for (i = 0; i < pos - 1; i++) {
+      temp = temp.next;
+    }
+
+    if(i === 0) {
+      this.head = this.head.next;
+      return;
+    }
+    temp.next = temp.next ? temp.next.next : null;
+  }
+
   length() {
     let count = 0;
     let temp = this.head;
 
-    while(temp) {
+    while (temp) {
       count++;
       temp = temp.next;
     }
@@ -84,22 +127,33 @@ class LinkedList {
   display() {
     const arr = [];
     let temp = this.head;
-    while(temp) {
+    while (temp) {
       arr.push(temp.data);
       temp = temp.next;
     }
     console.log(arr);
   }
+
+  search(val) {
+    let temp = this.head;
+    let pos = 0;
+    while(temp && temp.data !== val) {
+      temp = temp.next;
+      pos++;
+    }
+
+    return temp?.data === val ? pos : -1;
+  }
 }
 
 const ll = new LinkedList();
 ll.insertAtEnd(1);
-ll.insertAtEnd(8);
+ll.insertAtEnd(2);
+ll.insertAtEnd(3);
+ll.insertAtEnd(4);
 ll.insertAtEnd(9);
-ll.insertAtPos(7, 1);
-ll.insertAtPos(10, 5);
-console.log("The length of the linked list is: ", ll.size)
-ll.display();
+console.log(ll.search(10));
+// ll.display();
 /*
 List made with array.
 
