@@ -176,14 +176,26 @@ function sumOfArray(arr) {
     arr[i] = (sum) % 10;
     carry = Math.floor((sum) / 10);
   }
-  if(carry > 0) {
+  if (carry > 0) {
     arr.unshift(carry)
   }
   console.log(arr);
 }
 
-sumOfArray([1, 2, 3]);
-sumOfArray([9,9,9]);
-sumOfArray([9,0,9]);
-sumOfArray([9,0,9]);
+function maximumConsecutiveArray(arr, k) {
+  let maxSum = 0;
+  for (let i = 0; i < arr.length - k + 1; i++) {
+    let sum = 0;
+    for (let j = 0; j < k; j++) {
+      sum += arr[i+j];
+    }
+    maxSum = Math.max(sum, maxSum);
+  }
+  console.log("The sum: ", maxSum);
+}
 
+
+
+
+
+// maximumConsecutiveArray([7, 1, 2, 4, 5, 3, 2, 6, 9], 4);
